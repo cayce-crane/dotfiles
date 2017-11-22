@@ -29,7 +29,11 @@ map q <Nop>
 nnoremap <F5> :UndotreeToggle<cr>
 set tabstop=4
 set shiftwidth=4
-
+set autoindent
+set smartindent
+set smarttab
+set expandtab
+set softtabstop=0
 
 
 if has ('persistent_undo')
