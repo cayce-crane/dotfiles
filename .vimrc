@@ -35,7 +35,6 @@ set smarttab
 set expandtab
 set softtabstop=0
 
-
 if has ('persistent_undo')
   set undodir=~/.undodir/
   set undofile
@@ -127,10 +126,14 @@ colorscheme solarized8_dark
 "
 " gvim options to disable tool/menu bars
 if has ('gui_running')
-	set guioptions='-m'
-	set guioptions='-T'
-	set guioptions='-r'
-	set guioptions='-L'
+	"set guioptions='-m'
+	"set guioptions='-T'
+	"set guioptions='-r'
+	"set guioptions='-R'
+	"set guioptions='-L'
+	"set guioptions='-l'
+	set guioptions='+a'
+	set guioptions='+e'
 	set noshowmode
 endif
 
