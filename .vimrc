@@ -16,6 +16,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-repeat'
 Plug 'mbbill/undotree'
 Plug 'roman/golden-ratio'
+Plug 'dylanaraps/wal.vim'
 
 
 call plug#end()
@@ -26,7 +27,24 @@ call plug#end()
 """"Keybindings
 " disable recording with q
 map q <Nop>
+
+""insert mode remaps
+inoremap jj <ESC>  
+
+""normal mode remaps
 nnoremap <F5> :UndotreeToggle<cr>
+nnoremap 0 ^
+nnoremap ^ 0
+
+" easier split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
+
 set tabstop=4
 set shiftwidth=4
 set autoindent
@@ -34,6 +52,7 @@ set smartindent
 set smarttab
 set expandtab
 set softtabstop=0
+set clipboard=unnamedplus
 
 if has ('persistent_undo')
   set undodir=~/.undodir/
@@ -111,6 +130,7 @@ let g:ale_fixers = {'python': ['autopep8', 'yapf', 'isort']}
 
 
 colorscheme solarized8_dark
+" colorscheme wal
 
 " set a nicer cursor in insert mode (from terryma on github)
 " " Tmux will only forward escape sequences to the terminal if surrounded by
