@@ -27,6 +27,17 @@ call plug#end()
 " disable recording with q
 map q <Nop>
 nnoremap <F5> :UndotreeToggle<cr>
+nnoremap 0 ^
+nnoremap ^ 0
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+inoremap jj <Esc>
+
+
+""" `Set` values
+
 set tabstop=4
 set shiftwidth=4
 set autoindent
@@ -34,6 +45,10 @@ set smartindent
 set smarttab
 set expandtab
 set softtabstop=0
+set splitright
+set splitbelow
+" change command entry timeout length
+set timeoutlen=400
 
 if has ('persistent_undo')
   set undodir=~/.undodir/
