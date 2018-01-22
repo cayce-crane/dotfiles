@@ -16,7 +16,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-repeat'
 Plug 'mbbill/undotree'
 Plug 'roman/golden-ratio'
-Plug 'dylanaraps/wal.vim'
+Plug 'mileszs/ack.vim'
 
 
 call plug#end()
@@ -26,29 +26,24 @@ call plug#end()
 
 """"Keybindings
 " disable recording with q
-map q <Nop>
-
-""insert mode remaps
-inoremap jj <ESC>  
-
-""normal mode remaps
+map q <Nop> 
 nnoremap <F5> :UndotreeToggle<cr>
+" swap 0 and ^, ie make 0 go to first non-whitespace char on line
 nnoremap 0 ^
 nnoremap ^ 0
-
-" easier split navigation
+" following four commands are for easier split navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+" oo makes a newline w/o entering input mode, OO newline above
+nmap oo o<Esc>k
+nmap OO O<Esc>
+
+" jj exits input mode  
 inoremap jj <Esc>
 
-
 """ `Set` values
-=======
-
-set splitbelow
-set splitright
 
 set tabstop=4
 set shiftwidth=4
@@ -59,10 +54,13 @@ set expandtab
 set softtabstop=0
 set splitright
 set splitbelow
+"
 " change command entry timeout length
-set timeoutlen=400
-=======
-set clipboard=unnamedplus
+set timeoutlen=300
+
+" ignore .o files when searching with vimgrep
+set wildignore+=*.o
+
 
 if has ('persistent_undo')
   set undodir=~/.undodir/
@@ -73,6 +71,17 @@ endif
 set number
 set laststatus=2
 set background=dark
+
+" replace ack with ag
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+"" open vimgrep results in quickfix window
+augroup myvimrc
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l*    lwindow
+augroup END
+
 
 " Lightline
 let g:lightline = {
@@ -140,7 +149,6 @@ let g:ale_fixers = {'python': ['autopep8', 'yapf', 'isort']}
 
 
 colorscheme solarized8_dark
-" colorscheme wal
 
 " set a nicer cursor in insert mode (from terryma on github)
 " " Tmux will only forward escape sequences to the terminal if surrounded by
