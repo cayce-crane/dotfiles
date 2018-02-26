@@ -1,4 +1,6 @@
 
+scriptencoding utf-8
+set encoding=utf-8
 
 call plug#begin('~/.vim/plugged')
 
@@ -21,8 +23,8 @@ Plug 'mileszs/ack.vim'
 
 call plug#end()
 
-
-
+"colo solo_dark
+syntax on
 
 """"Keybindings
 " disable recording with q
@@ -39,6 +41,10 @@ nnoremap <C-H> <C-W><C-H>
 " oo makes a newline w/o entering input mode, OO newline above
 nmap oo o<Esc>k
 nmap OO O<Esc>
+
+" make j and k go to next screen row, instead of next 'physical' line
+noremap j gj
+noremap k gk
 
 " jj exits input mode  
 inoremap jj <Esc>
@@ -99,7 +105,7 @@ let g:lightline = {
 \   'readonly': 'error',
 \   'linter_warnings': 'warning',
 \   'linter_errors': 'error'
-\ },
+\ }
 \ }
 
 function! LightlineLinterWarnings() abort
