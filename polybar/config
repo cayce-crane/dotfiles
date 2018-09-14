@@ -52,7 +52,8 @@ font-2 = Roboto:size=8
 modules-left = i3 xwindow
 modules-center = 
 ;modules-right = xbacklight volume memory cpu wlan eth battery temperature date powermenu
-modules-right = volume wlan battery date powermenu
+;modules-right = volume wlan battery date powermenu
+modules-right = volume eth date powermenu
 
 
 tray-position = right
