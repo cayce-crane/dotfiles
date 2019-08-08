@@ -1,3 +1,9 @@
-function chrome () {
-	nohup chromium > /dev/null 2>&1 & disown
-}
+alias ..='cd ..'
+alias ....='cd ../..'
+alias ':q'='exit'
+alias 'search'='apt-cache search'
+alias ai='sudo apt install'
+alias ucgrep='grep --color=auto -Ri --exclude-dir="node_modules" --exclude-dir="dojo" --exclude="bundle.js" --exclude="*.min*" --exclude="*-min.css" --exclude-dir="nls"'
+alias grep='grep --color=auto -Ri --exclude-dir="node_modules" --exclude="bundle.js" --exclude="*.min" --exclude="*-min.css" --exclude-dir="dojo"'
+alias 'hgd'='hg diff --exclude public/scripts/bundle.js | colordiff | less -r'
+alias 'NightshadeNG'='NightshadeNG --vdec'

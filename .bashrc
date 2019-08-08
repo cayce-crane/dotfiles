@@ -56,10 +56,18 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+hg_in_repo() {
+    hg branch 2> /dev/null | awk '{print ":"}'
+}
+
+hg_branch() {
+    hg branch 2> /dev/null | awk '{print $1}'
+}
+
 #was 38;5;68
 if [ "$color_prompt" = yes ]; then
 #    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-     PS1=$'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \[\033[38;5;208m\]\u03BB\[\e[0m\] '
+PS1=$'\n${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[0;35m\]$(hg_in_repo)$(hg_branch)\n\[\033[01;34m\][\D{%T}] \[\033[38;5;208m\]\u03BB\[\e[0m\] '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -87,14 +95,13 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias mpv='mpv --stop-screensaver'
-alias xi='xbps-install'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -110,10 +117,7 @@ fi
 
 alias gcd='gcc -ggdb -Wall'
 alias valgrinda='valgrind --leak-check=full --track-origins=yes'
-alias ..='cd ..'
-alias 'fuck!'='fuck -y'
-alias ':q'='exit'
-
+alias pushd.='pushd ./'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -129,6 +133,11 @@ fi
 # Stuff I added
 PATH=$PATH:.
 
+export PATH=${PATH}:/home/dakota/Downloads/OpenSceneGraph/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/home/dakota/Downloads/OpenSceneGraph/lib
+export OPENSCENEGRAPH_INCLUDE_DIR=/home/dakota/Downloads/OpenSceneGraph/include
+export OPENSCENEGRAPH_LIB_DIR=/home/dakota/Downloads/OpenSceneGraph/lib
+
 function touchno() {
     nohup touchegg > /dev/null 2>&1 & disown
 }
@@ -137,4 +146,7 @@ function touchno() {
 #Loads fzf (fuzzyfind)
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-eval $(thefuck --alias)
+#eval $(thefuck --alias)
+
+export NVM_DIR="/home/dakota/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
